@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微博</title>
+<link href="style/weibo.css" rel="stylesheet" type="text/css" />
+<script src="js/baiduTemplate.js"></script>
+</head>
+
+<body>
+<div id="login">
+    <!--登陆信息-->
+    <p>用户名：<input type="text" id="loginUserName"></p>
+    <p>密码：<input type="password" id="loginPassWord"></p>
+    <p><input type="button" value="登陆" id="loginBtn"></p>
+    <p>如果没有账号，点此<a onclick="goReg()">注册</a></p>
+</div>
+<div id="reg">
+    <!--注册信息-->
+    <p>用户名：<input type="text"  id="regUserName"></p>
+    <p>密码：<input type="password" id="regPassWord"></p>
+    <p>确认密码：<input type="password" id="regPassWord2"></p>
+    <p><input type="button" value="注册" id="regBtn"></p>
+    <p>如果已有账号，点此<a onclick="gologin()" >登陆</a></p>
+</div>	
+<div class="jyArea">
+<!--留言-->
+     <div class="takeComment">
+     	<h3></h3>
+        <textarea name="textarea" class="takeTextField" id="tijiaoText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" />
+            <input type="button" value="退出" onclick="outLogin()"/>
+        </div>
+    </div>
+<!--已留-->
+    <div class="commentOn">
+
+    </div>
+</div>
+<script type="text/html" id="tp">
+<div class="noContent" style="display:<%=(contextList.length>0?'none':'block')%>">暂无留言</div>
+    <%for(var i=0;i<contextList.length;i++){%>
+    <div class="messList">
+        <div class="reply">
+            <p class="replyContent"><%=contextList[i].context%></p>
+            <p class="operation">
+                <span class="replyTime"><%=contextList[i].addTime%></span>
+                <span class="handle">
+                    	<a href="javascript:;" class="top" onclick="upWeibo(<%=contextList[i].id%>,1)"><%=contextList[i].topNum%></a>
+                        <a href="javascript:;" class="down_icon" onclick="upWeibo(<%=contextList[i].id%>,2)"><%=contextList[i].downNum%></a>
+                        <a href="javascript:;" class="cut" onclick="deleteWeibo(<%=contextList[i].id%>)">删除</a>
+                    </span>
+            </p>
+        </div>
+    </div>
+     <%}%>
+<div class="page">
+	<a href="javascript:;" class="active">1</a>
+	<a href="javascript:;">2</a>
+	<a href="javascript:;">3</a>
+</div>
+
+</script>
+</body>
+<script src="js/weibo.js" type="text/javascript" charset="utf-8"></script>
+</html>
